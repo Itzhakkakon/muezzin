@@ -1,13 +1,12 @@
 import os
 from tinytag import TinyTag
-import config
+from config import config
 from pprint import pprint
 
-DIRECTORY_PATH = config.DIRECTORY_PATH
 
 class LoadData:
     def __init__(self):
-        self.folder_path = DIRECTORY_PATH
+        self.folder_path = config.DIRECTORY_PATH
         self.data = {}
 
     def load(self):
