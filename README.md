@@ -5,3 +5,20 @@
 יש לי כמה סוגים ל- kafka שזה כרגע אני לומד כי אני לא התעסקתי עם זה בכלל
 
 יש קצת בלאגן בקוד אני יסדר את זה מחר בבוקר
+
+
+הרצת דוקר
+ docker pull apache/kafka
+docker run -d --name=kafka -p 9092:9092 apache/kafka
+
+kafka
+יצרתי קובץ main.py ראשי שעובד
+עשיתי גם קובץ main_consumer_test.py
+עבור בדיקה לראות שהנתונים מגיעים -kafka
+צריך להפעיל קודם את main_consumer_test.py ואז main.py כדי לראות את הנתונים מגיעים לטרמינל של main_consumer_test.py
+יש לי קובץ config.py שמכיל את כל ההגדרות של kafka
+
+
+לגבי מחר אני רוצה לחלק את הכל לצורה של שני סרוויסים שונים שלכל אחד יהיה קובץ config ו- main משלו
+התחלתי לעבוד על Elasticsearch ו-mongoDB
+
