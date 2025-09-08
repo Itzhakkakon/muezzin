@@ -1,6 +1,6 @@
 import os
 
-DIRECTORY_PATH = os.getenv("DIRECTORY_PATH", "C:\podcasts")
+DIRECTORY_PATH = os.getenv("DIRECTORY_PATH", r"C:\podcasts")
 
 
 KAFKA_PROTOKOL = os.getenv("KAFKA_PROTOKOL", "http")
