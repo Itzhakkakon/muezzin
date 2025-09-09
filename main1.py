@@ -1,9 +1,11 @@
 from config import config
 from load_data.load_data import LoadData
 import logging
+# from log.login import Logger
 from utils.kafka_101.kafka_utils import AsyncKafkaProducer
-from utils.kafka_101.kafka_utils import AsyncKafkaConsumer
 import asyncio
+
+# logger = Logger.get_logger()
 
 
 logging.basicConfig(level=config.LOG_LEVEL)
@@ -12,31 +14,36 @@ logger = logging.getLogger(__name__)
 
 
 async def main():
-    consumer = AsyncKafkaConsumer(
-                [config.KAFKA_TOPIC],
-                bootstrap_servers=f"{config.KAFKA_URL}:{config.KAFKA_PORT}",
-                group_id=config.KAFKA_GROUP_ID,
-            )
+    datas = LoadData()
+    producer = AsyncKafkaProducer(
+        bootstrap_servers=f"{config.KAFKA_URL}:{config.KAFKA_PORT}"
+    )
+
     try:
-        await consumer.start()
-        logger.info("Kafka consumer started successfully")
+        await producer.start()
+        logger.info("Kafka producer started successfully")
     except Exception as e:
-        logger.error(f"Failed to start Kafka consumer: {e}")
+        logger.error(f"Failed to start Kafka producer: {e}")
         return
+
+    logger.info("Starting main processing loop...")
+    poll_count = 0
+
+
     try:
-        while True:
-            try:
-                async for msg in consumer.consume():
-                    print(msg)
-            except Exception as e:
-                logger.error(f"Error in consumer loop: {e}")
-                logger.debug("Continuing with next iteration after error...")
+        poll_count += 1
+        logger.debug(f"Polling iteration #{poll_count}")
+
+        meseege_count = 0
+        for data in datas.load():
+            await producer.send_json(config.KAFKA_TOPIC, data)
+            meseege_count += 1
+            logger.info(f"Sent {meseege_count} messages to Kafka topic {config.KAFKA_TOPIC}")
     except Exception as e:
         logger.error(f"Error in main processing loop: {e}")
         logger.debug("Continuing with next iteration after error...")
     logger.debug("Waiting 60 seconds before next poll...")
     await asyncio.sleep(60)  # Poll every minute
-
 
 
 
@@ -48,3 +55,4 @@ if __name__ == "__main__":
     except Exception as e:
         logger.critical(f"Critical error in main: {e}")
         raise
+
