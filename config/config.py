@@ -12,9 +12,7 @@ KAFKA_GROUP_ID = os.getenv("KAFKA_GROUP_ID", "persister_service")
 
 #logging
 LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO").upper()
-LOG_LEVEL2 = os.getenv("LOG_LEVEL", "INFO").upper()
 LOG_KAFKA = os.getenv("LOG_KAFKA", "ERROR").upper()
-LOG_KAFKA2 = os.getenv("LOG_KAFKA", "ERROR").upper()
 LOG_MONGO = os.getenv("LOG_MONGO", "ERROR").upper()
 
 #elastic
@@ -54,3 +52,21 @@ ES_INDEX_DATA = os.getenv("ES_INDEX_DATA", "podcasts")
 #               'filesize': 2454330,
 #               'samplerate': 24000},
 #  'path': 'C:\\podcasts\\download (1).wav'}
+
+#docker-compose
+MONGO_INITDB_ROOT_USERNAME = os.getenv("MONGO_INITDB_ROOT_USERNAME", "izak")
+MONGO_INITDB_ROOT_PASSWORD = os.getenv("MONGO_INITDB_ROOT_PASSWORD", "54321")
+MONGO_EXPRESS_USERNAME = os.getenv("MONGO_EXPRESS_USERNAME", "izak")
+MONGO_EXPRESS_PASSWORD = os.getenv("MONGO_EXPRESS_PASSWORD", "54321")
+
+ME_CONFIG_MONGODB_PORT = os.getenv("ME_CONFIG_MONGODB_PORT", "27017")
+ME_CONFIG_MONGODB_SERVER = os.getenv("ME_CONFIG_MONGODB_SERVER", "mongodb")
+
+#mongoDB
+MONGO_HOST = os.getenv("MONGO_HOST", "localhost")
+MONGO_PORT = int(os.getenv("MONGO_PORT", 27017))
+MONGO_PROTOCOL = os.getenv("MONGO_PROTOCOL", "mongodb")
+MONGO_URL = os.getenv("MONGO_URL", f"{MONGO_PROTOCOL}://{MONGO_HOST}:{MONGO_PORT}")
+
+MONGO_DB = os.getenv("MONGO_DB", "muezzin")
+MONGO_COLLECTION = os.getenv("MY_COLLECTION", "podcasts")

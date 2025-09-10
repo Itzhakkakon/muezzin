@@ -2,11 +2,9 @@ import asyncio
 import datetime
 import json
 import logging
-# from log.login import Logger
 from typing import Any, AsyncIterator, Awaitable, Callable, Optional, Sequence, Tuple
 from aiokafka import AIOKafkaConsumer, AIOKafkaProducer
 
-# logger = Logger.get_logger()
 
 logger = logging.getLogger(__name__)
 

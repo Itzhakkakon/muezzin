@@ -1,16 +1,11 @@
 from config import config
 from load_data.load_data import LoadData
-import logging
-# from log.login import Logger
+from log.login import Logger
 from utils.kafka_101.kafka_utils import AsyncKafkaProducer
 import asyncio
 
-# logger = Logger.get_logger()
+logger = Logger.get_logger()
 
-
-logging.basicConfig(level=config.LOG_LEVEL)
-logging.getLogger("kafka").setLevel(level=config.LOG_KAFKA)
-logger = logging.getLogger(__name__)
 
 
 async def main():
@@ -55,4 +50,3 @@ if __name__ == "__main__":
     except Exception as e:
         logger.critical(f"Critical error in main: {e}")
         raise
-
